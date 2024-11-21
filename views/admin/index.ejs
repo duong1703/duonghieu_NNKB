@@ -1,0 +1,70 @@
+<!-- views/admin/index.ejs -->
+
+<% include layout/header.ejs %>
+
+<div class="page-container container-fluid">
+    <% include layout/menu.ejs %>
+    
+    <section id="main-content">
+        <section class="wrapper main-wrapper">
+            <div class="col-xs-12">
+                <div class="page-title text-center mb-4">
+                    <h1 class="title">Dashboard</h1>
+                    <% if (typeof response_message !== 'undefined' && response_message.info) { %>
+                        <div class="response-message alert alert-info"><%= response_message.info %></div>
+                    <% } %>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <section class="box nobox">
+                    <div class="content-body">
+                        <div class="row g-4">
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <div class="r4_counter db_box shadow-sm rounded p-3 d-flex align-items-center">
+                                    <i class="fa fa-thumbs-up icon-md icon-rounded icon-primary me-3"></i>
+                                    <div class="stats">
+                                        <h4 class="fw-bold text-primary mb-0"><strong><%= order %></strong></h4>
+                                        <span class="text-muted">Orders</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <div class="r4_counter db_box shadow-sm rounded p-3 d-flex align-items-center">
+                                    <i class="fa fa-shopping-cart icon-md icon-rounded icon-accent me-3"></i>
+                                    <div class="stats">
+                                        <h4 class="fw-bold text-success mb-0"><strong><%= product %></strong></h4>
+                                        <span class="text-muted">Products</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <div class="r4_counter db_box shadow-sm rounded p-3 d-flex align-items-center">
+                                    <i class="fa fa-dollar icon-md icon-rounded icon-purple me-3"></i>
+                                    <div class="stats">
+                                        <h4 class="fw-bold text-danger mb-0"><strong><%= parseInt(profit).toLocaleString('en-us') %>đ</strong></h4>
+                                        <span class="text-muted">Profit</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <div class="r4_counter db_box shadow-sm rounded p-3 d-flex align-items-center">
+                                    <i class="fa fa-users icon-md icon-rounded icon-warning me-3"></i>
+                                    <div class="stats">
+                                        <h4 class="fw-bold text-warning mb-0"><strong><%= user %></strong></h4>
+                                        <span class="text-muted">Users</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </section>
+</div>
+
+<% include layout/footer.ejs %>

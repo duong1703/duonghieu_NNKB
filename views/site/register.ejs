@@ -1,0 +1,111 @@
+<% include layout/header.ejs %>
+<!-- Header End -->
+
+<div id="maincontainer">
+  <section id="product">
+    <div class="container">
+      <!-- breadcrumb -->
+      <ul class="breadcrumb">
+        <li><a href="#">Home</a><span class="divider">/</span></li>
+        <li class="active">Register</li>
+      </ul>
+
+      <!-- Contact Us-->
+      <h1 class="heading1"><span class="maintext">Register</span></h1>
+      <div class="row">
+        <% if (response_message) { %>
+          <div class="alert alert-success"><%= response_message %></div>
+        <% } %>
+
+        <div class="span9">
+          <div class="alert alert-danger" style="display: none;"></div>
+          <form id="registration-form">
+            <fieldset>
+              <div class="control-group">
+                <label for="fullname" class="control-label">Họ tên <span class="required">*</span></label>
+                <div class="controls">
+                  <input type="text" class="required" id="fullname" name="fullname" placeholder="Nhập họ tên" />
+                </div>
+              </div>
+
+              <div class="control-group">
+                <label for="password" class="control-label">Mật khẩu <span class="required">*</span></label>
+                <div class="controls">
+                  <input type="password" class="required" id="password" name="password" placeholder="Nhập mật khẩu" />
+                </div>
+              </div>
+
+              <div class="control-group">
+                <label for="repassword" class="control-label">Nhập lại Mật khẩu <span class="required">*</span></label>
+                <div class="controls">
+                  <input type="password" class="required" id="repassword" name="repassword" placeholder="Nhập lại mật khẩu" />
+                </div>
+              </div>
+
+              <div class="control-group">
+                <label for="email" class="control-label">Email <span class="required">*</span></label>
+                <div class="controls">
+                  <input type="email" class="required" id="email" name="email" placeholder="Nhập email" />
+                </div>
+              </div>
+
+              <div class="control-group">
+                <label for="phone" class="control-label">Số điện thoại</label>
+                <div class="controls">
+                  <input type="text" id="phone" name="phone" placeholder="Nhập số điện thoại" />
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="button" class="btn btn-orange" id="register_id" onclick="onSubmit()">Đăng ký</button>
+                <button type="reset" class="btn">Reset</button>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script type="text/javascript">
+  function onSubmit() {
+    var postData = {
+      fullname: $('#fullname').val(),
+      email: $('#email').val(),
+      password: $('#password').val(),
+      repassword: $('#repassword').val()
+    };
+
+    $.ajax({
+      type: 'POST',
+      url: '/dang-ky.html',  // Remove localhost for production
+      data: postData,
+      success: function (response) {
+        $('.alert-danger').empty().hide();  // Hide alert before showing new messages
+        var bHasError = false;
+
+        if (response) {
+          if (response.isSucceed) {
+            window.location.href = '/';
+          } else if (response.errors) {
+            response.errors.forEach(function (error) {
+              $('.alert-danger').append(`<label>${error.msg}</label>`);
+            });
+            bHasError = true;
+          }
+        }
+
+        if (bHasError) {
+          $('.alert-danger').show();
+        }
+      },
+      error: function () {
+        $('.alert-danger').empty().append('<label>Lỗi kết nối. Vui lòng thử lại.</label>').show();
+      }
+    });
+  }
+</script>
+
+<!-- Footer -->
+<% include layout/footer.ejs %>

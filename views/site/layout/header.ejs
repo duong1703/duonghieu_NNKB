@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <base href="http://localhost:3000/">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300italic,400italic,600,600italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Crete+Round' rel='stylesheet' type='text/css'>
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <link href="css/bootstrap-responsive.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/flexslider.css" type="text/css" media="screen" rel="stylesheet"  />
+  <link href="css/jquery.fancybox.css" rel="stylesheet">
+  <link href="css/cloud-zoom.css" rel="stylesheet">
+
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <![endif]-->
+  <!-- fav -->
+  <link rel="shortcut icon" href="assets/ico/favicon.html">
+</head>
+<body>
+<!-- Header Start -->
+<header>
+  <div class="headerstrip">
+        <div class="span12" style="width: 100% !important;float: initial !important;margin-left: 0 !important;">
+          <div class="pull-left" style="background-color: #fff; line-height: 72px; height: 72px;">
+            <a href="/" class="logo"><img src="img/shopdiphuot-logo.png" alt="SimpleOne" title="SimpleOne" style="width: 130px;height: 50px; margin: 20px;"></a>
+          </div>
+          <!-- Top Nav Start -->
+          <div class="pull-left">
+            <div class="navbar" id="topnav">
+              <div class="navbar-inner">
+                <ul class="nav" >
+                  <li>
+                  <input class="topinput" id="search-keyword" name="key" type="text"
+                    placeholder="Tìm kiếm theo tên sản phẩm....." autocomplete="off" maxlength="50"
+                    style="width: 220px; margin: -4px 60px 0 -15px;" />
+                  </li>
+                  <li><a class="home active" href="/">Trang chủ</a></li>
+                  <li><a  href="/huong-dan.html">Giới thiệu</a></li>
+                  <li><a  href="/security.html">Liên Hệ</a></li>
+                  <li><a  href="/Payment.html">Bài Viết</a></li>
+                  <li><a class="shoppingcart" href="/gio-hang.html">Giỏ hàng</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="pull-right">
+            <div class="navbar" id="topnav">
+              <div class="navbar-inner" style="padding-right: 0;">
+                <ul class="nav" >
+                  <li><a class="" href="/dang-ky.html">Đăng kí</a></li>
+                  <li><a class="" href="/dang-nhap.html" style="margin-right: 0;">Đăng nhập</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class='pull-right' id="profile-right">
+                    <ul class="info-menu right-links list-inline list-unstyled">
+                        
+                    </ul>
+                </div>
+          <!-- Top Nav End -->
+        </div>
+  </div>
+  <div class="container">
+
+    <div class="container">
+      <div id="categorymenu" style="padding:0;">
+          <nav class="subnav">
+              <ul class="nav-pills categorymenu">
+                  <!-- Category menu items will be dynamically populated here -->
+              </ul>
+          </nav>
+      </div>
+  </div>
+  
+  
+  <script type="text/javascript">
+    var input = document.getElementById("search-keyword");
+
+    input.addEventListener("keyup", function(event) {
+      if (event.keyCode === 13) {
+        window.location.href = '/tim-kiem.html?keyword=' + input.value;
+      }
+    });
+  </script>
+</header>

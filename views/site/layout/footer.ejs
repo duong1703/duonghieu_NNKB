@@ -1,0 +1,132 @@
+
+
+<footer id="footer">
+  <section class="footersocial">
+    <div class="container">
+      <div class="row">
+        
+        <div class="span3 contact" style= "font-size : 15px">
+          <h2>Contact Us </h2>
+          <ul>
+            <li class="phone"> 0812453363</li>
+            <li class="email">  dophuot@gmail.com</li>
+          </ul>
+          </div>
+        <div class="span3"  style= "font-size : 15px">
+          <h2>Email liên hệ</h2>
+          <ul>
+            <li class="Email-price">Liên hệ báo giá:</li>
+            <p style = "color: blue"> dophuot@gmail.com<p>
+            <li class="Email-support">Hỗ trợ Khách hàng:</li>
+            <p style = "color: blue"> dophuot@gmail.com<p>
+            <li class="Email-co">Hợp tác phát triển:</li>
+            <p style = "color: blue"> dophuot@gmail.com<p>
+          </ul>
+        </div>
+
+          <div class="span3"  style= "font-size : 15px">
+          <h2>Payment</h2>
+          <ul>
+            <li>
+            <p>Các hình thức thanh toán  khác :<p>  
+       
+              <img src="images/footer/thanhtoan.png" style="width: 200%;"></a>
+                
+            </li>
+           
+          </ul>
+          </div>
+          
+
+  </section>
+  
+</footer>
+<!-- javascript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/respond.min.js"></script>
+<script src="js/application.js"></script>
+<script src="js/bootstrap-tooltip.js"></script>
+<script defer src="js/jquery.fancybox.js"></script>
+<script defer src="js/jquery.flexslider.js"></script>
+<script type="text/javascript" src="js/jquery.tweet.js"></script>
+<script  src="js/cloud-zoom.1.0.2.js"></script>
+<script  type="text/javascript" src="js/jquery.validate.js"></script>
+<script type="text/javascript"  src="js/jquery.carouFredSel-6.1.0-packed.js"></script>
+<script type="text/javascript"  src="js/jquery.mousewheel.min.js"></script>
+<script type="text/javascript"  src="js/jquery.touchSwipe.min.js"></script>
+<script type="text/javascript"  src="js/jquery.ba-throttle-debounce.min.js"></script>
+<script defer src="js/custom.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        menu();
+
+        $('.updateCart').click(function(){
+            var id = $(this).attr('id');
+            var soluong = parseInt($('#'+id).val());
+            if(soluong > 0){
+                $.post(
+                    './updateCart',
+                    {
+                      id      : id,
+                      soluong : soluong
+                    }, function(data){                     
+                      
+                      if(data.st ==1) location.href = "gio-hang.html";
+                    }
+                ), 'json';
+            }
+        });
+
+         $('.delCart').click(function(){
+            var id = $(this).attr('id');
+           
+                $.post(
+                    './delCart',
+                    {
+                      id      : id
+                    }, function(data){                     
+                      
+                      if(data.st ==1) location.href = "gio-hang.html";
+                    }
+                ), 'json';
+            
+        });
+
+
+    });
+
+    function menu(){
+      $.post(
+          './menu',
+          {
+
+          },function(data){
+            var classMenu = '';
+            var hash = location.pathname;
+
+            if(hash == '/') var menu = '<li><a class="active" href="/" >Home</a></li>';
+            else var menu = '<li><a  href="/">Home</a></li>';
+       
+            data.forEach(function(item){
+              var urlMenu     = '/danh-muc/' + item.urlRewriteName +'.' + item.id + '.html';
+               var pathName   = location.pathname;
+               pathName       = pathName.split('.')[2];
+               
+               menu += '<li><a  href="'+ urlMenu +'" ';
+               if(urlMenu == hash || item._id == pathName) menu += 'class="active"';
+               menu += '>'+item.name+'</a></li>';
+            });
+            $('#categorymenu ul.categorymenu').html(menu);
+
+
+          }
+        );
+    }
+
+
+</script>
+</body>
+</html>
